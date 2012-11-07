@@ -91,13 +91,9 @@ s.                            `ody/`                :mh:`````-+dds:dm-:Nh`:Ns   
                              | || |_| | |_| |  _ < ___) | |___| |___|  _|  |_||_|
                              |_| \___/ \___/|_| \_\____/|_____|_____|_|    (_)(_)
     """
-
     listOfTypes = listTypes(PROJECTNAME)
-
     content_types, constructors, ftis = process_types(
-        listOfTypes,
-        PROJECTNAME)
-
+        listOfTypes, PROJECTNAME)
     all_types = zip(content_types, constructors)
     for atype, constructor in all_types:
         kind = "%s: %s" % (PROJECTNAME, atype.archetype_name)
