@@ -4,8 +4,6 @@ from Products.Archetypes.atapi import registerType as register_type
 from Products.ATContentTypes.content import base
 from Products.ATContentTypes.content import schemata
 from Products.CMFCore import utils
-from zope.interface import Interface
-from zope.interface import implements
 
 
 PERMISSION = 'at_test: Add testtype'
@@ -13,18 +11,10 @@ PROJECTNAME = 'at_test'
 SCHEMA = schemata.ATContentTypeSchema.copy()
 
 
-class ITestType(Interface):
-    """
-    AT test type interface
-    """
-    pass
-
-
 class TestType(base.ATCTContent):
     """
-    AT test type content type definition
+    Archetypes content type definition, copies ATCT's schema which includes Title and Description fields.
     """
-    implements(ITestType)
     schema = SCHEMA
 
 
