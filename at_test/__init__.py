@@ -92,14 +92,11 @@ s.                            `ody/`                :mh:`````-+dds:dm-:Nh`:Ns   
                              |_| \___/ \___/|_| \_\____/|_____|_____|_|    (_)(_)
     """
     types = list_types(PROJECTNAME)
-    content_types, constructors, ftis = process_types(
-        types, PROJECTNAME)
+    content_types, constructors, ftis = process_types(types, PROJECTNAME)
     all_types = zip(content_types, constructors)
     for content_type, constructor in all_types:
         kind = "%s: %s" % (PROJECTNAME, content_type.archetype_name)
-        content = ContentInit(kind,
-            content_types=(atype,),
-            permission=PERMISSION,
-            extra_constructors=(constructor,),
+        content = ContentInit(kind, content_types=(content_type,),
+            permission=PERMISSION, extra_constructors=(constructor,),
         )
         content.initialize(context)
