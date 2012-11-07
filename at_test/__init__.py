@@ -95,8 +95,8 @@ s.                            `ody/`                :mh:`````-+dds:dm-:Nh`:Ns   
     content_types, constructors, ftis = process_types(
         listOfTypes, PROJECTNAME)
     all_types = zip(content_types, constructors)
-    for atype, constructor in all_types:
-        kind = "%s: %s" % (PROJECTNAME, atype.archetype_name)
+    for content_type, constructor in all_types:
+        kind = "%s: %s" % (PROJECTNAME, content_type.archetype_name)
         content = ContentInit(kind,
             content_types=(atype,),
             permission=PERMISSION,
