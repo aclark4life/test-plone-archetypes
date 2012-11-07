@@ -1,5 +1,8 @@
 <div metal:use-macro="here/main_template/macros/master">
     <div metal:fill-slot="main">
-        <h1>TestType</h1>
+        <h1 tal:content="here/Title">TestType</h1>
+        <p tal:content="here/Description">
+            Description
+        </p>
     </div>
 </div>
