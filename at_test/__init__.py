@@ -1,10 +1,16 @@
 from Products.Archetypes.atapi import listTypes as list_types
 from Products.Archetypes.atapi import process_types
+from Products.Archetypes.atapi import registerType as register_type
+from Products.ATContentTypes.content import base
+from Products.ATContentTypes.content import schemata
 from Products.CMFCore import utils
+from zope.interface import Interface
+from zope.interface import implements
 
 
 PERMISSION = 'at_test: Add testtype'
 PROJECTNAME = 'at_test'
+SCHEMA = schemata.ATContentTypeSchema.copy()
 
 
 def Y_U_NO_INIT(context):
@@ -102,21 +108,6 @@ s.                            `ody/`                :mh:`````-+dds:dm-:Nh`:Ns   
         content.initialize(context)
 
 
-
-
-
-
-from Products.Archetypes import atapi
-from Products.ATContentTypes.content import base
-from Products.ATContentTypes.content import schemata
-from zope.interface import Interface
-from zope.interface import implements
-
-
-PROJECTNAME = 'at_test'
-SCHEMA = schemata.ATContentTypeSchema.copy()
-
-
 class ITestType(Interface):
     """
     AT test type interface
@@ -132,4 +123,4 @@ class TestType(base.ATCTContent):
     schema = SCHEMA
     
 
-atapi.registerType(TestType, PROJECTNAME)
+register_type(TestType, PROJECTNAME)
