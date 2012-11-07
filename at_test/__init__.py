@@ -4,6 +4,8 @@ from Products.Archetypes.atapi import registerType as register_type
 from Products.ATContentTypes.content import base
 from Products.ATContentTypes.content import schemata
 from Products.CMFCore import utils
+from Products.Five.browser.pagetemplatefile import ViewPageTemplateFile
+from zope.publisher.browser import BrowserPage
 
 
 PERMISSION = 'at_test: Add testtype'
@@ -16,6 +18,14 @@ class TestType(base.ATCTContent):
     Archetypes content type definition, copies ATCT's schema which includes Title and Description fields.
     """
     schema = SCHEMA
+
+
+class TestTypeView(BrowserPage):
+    """
+    A view with a template to serve as testtypes' default_view
+    """
+    def __call__(self):
+        return ViewPageTemplateFile('testtype.pt')
 
 
 def Y_U_NO_INIT(context):
