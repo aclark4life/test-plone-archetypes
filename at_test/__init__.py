@@ -96,7 +96,40 @@ s.                            `ody/`                :mh:`````-+dds:dm-:Nh`:Ns   
     all_types = zip(content_types, constructors)
     for content_type, constructor in all_types:
         kind = "%s: %s" % (PROJECTNAME, content_type.archetype_name)
-        content = ContentInit(kind, content_types=(content_type,),
+        content = utils.ContentInit(kind, content_types=(content_type,),
             permission=PERMISSION, extra_constructors=(constructor,),
         )
         content.initialize(context)
+
+
+
+
+
+
+from Products.Archetypes import atapi
+from Products.ATContentTypes.content import base
+from Products.ATContentTypes.content import schemata
+from zope.interface import Interface
+from zope.interface import implements
+
+
+PROJECTNAME = 'at_test'
+SCHEMA = schemata.ATContentTypeSchema.copy()
+
+
+class ITestType(Interface):
+    """
+    AT test type interface
+    """
+    pass
+
+
+class TestType(base.ATCTContent):
+    """
+    AT test type content type definition
+    """
+    implements(ITestType)
+    schema = SCHEMA
+    
+
+atapi.registerType(TestType, PROJECTNAME)
