@@ -25,7 +25,7 @@ class TestTypeView(BrowserPage):
     A view with a template to serve as testtypes' default_view
     """
     def __call__(self):
-        return ViewPageTemplateFile('testtype.pt')
+        return ViewPageTemplateFile('testtype.pt')(self)
 
 
 def Y_U_NO_INIT(context):
