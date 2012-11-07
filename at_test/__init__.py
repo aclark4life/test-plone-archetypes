@@ -13,6 +13,21 @@ PROJECTNAME = 'at_test'
 SCHEMA = schemata.ATContentTypeSchema.copy()
 
 
+class ITestType(Interface):
+    """
+    AT test type interface
+    """
+    pass
+
+
+class TestType(base.ATCTContent):
+    """
+    AT test type content type definition
+    """
+    implements(ITestType)
+    schema = SCHEMA
+
+
 def Y_U_NO_INIT(context):
     """
                          ________  ____  _____ ____     ____ __  __ _____ 
@@ -106,21 +121,5 @@ s.                            `ody/`                :mh:`````-+dds:dm-:Nh`:Ns   
             permission=PERMISSION, extra_constructors=(constructor,),
         )
         content.initialize(context)
-
-
-class ITestType(Interface):
-    """
-    AT test type interface
-    """
-    pass
-
-
-class TestType(base.ATCTContent):
-    """
-    AT test type content type definition
-    """
-    implements(ITestType)
-    schema = SCHEMA
-    
 
 register_type(TestType, PROJECTNAME)
