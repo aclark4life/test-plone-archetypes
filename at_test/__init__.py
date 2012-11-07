@@ -1,4 +1,10 @@
+from Products.Archetypes.atapi import listTypes
+from Products.Archetypes.atapi import process_types
 from Products.CMFCore import utils
+
+
+PERMISSION = 'at_test: Add testtype'
+PROJECTNAME = 'at_test'
 
 
 def Y_U_NO_INIT(context):
@@ -85,4 +91,19 @@ s.                            `ody/`                :mh:`````-+dds:dm-:Nh`:Ns   
                              | || |_| | |_| |  _ < ___) | |___| |___|  _|  |_||_|
                              |_| \___/ \___/|_| \_\____/|_____|_____|_|    (_)(_)
     """
-    utils.ContentInit()
+
+    listOfTypes = listTypes(PROJECTNAME)
+
+    content_types, constructors, ftis = process_types(
+        listOfTypes,
+        PROJECTNAME)
+
+    all_types = zip(content_types, constructors)
+    for atype, constructor in all_types:
+        kind = "%s: %s" % (PROJECTNAME, atype.archetype_name)
+        content = ContentInit(kind,
+            content_types=(atype,),
+            permission=PERMISSION,
+            extra_constructors=(constructor,),
+        )
+        content.initialize(context)
